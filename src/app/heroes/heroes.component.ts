@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 //  importing the Hero class
 import {Hero} from '../hero';
+//  importing the HEROES object which represents an array of 'Hero's. Note: 'Hero' is a class. See 'hero.ts'
+import {HEROES} from '../mock-heroes';
 
 //  annotating the component class with @Component
 @Component({
@@ -14,11 +16,15 @@ import {Hero} from '../hero';
   styleUrls: ['./heroes.component.css']
 })
 //  Always export the component class so you can import it elsewhere
+//  This component is being automatically imported by Angular to the app.module.ts
 export class HeroesComponent implements OnInit {
   
   constructor() { }
 
-  //  creating a hero property of type 'Hero'
+  //  declaring a 'heroes' component and initializing its value to the HEROES object
+  heroes = HEROES;
+
+  //  declaring a hero property of type 'Hero'
   hero: Hero = {
     id: 1,
     name: 'Windstorm'
@@ -27,8 +33,6 @@ export class HeroesComponent implements OnInit {
   //  ngOnInit() is a lifecycle hook that is used for two main reasons:
   //  To perform complex initializations shortly after construction.
   //  To set up the component after Angular sets the input properties.
-  ngOnInit() {
-    
+  ngOnInit() { 
   }
-
 }
