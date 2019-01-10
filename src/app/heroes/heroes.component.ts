@@ -21,14 +21,16 @@ export class HeroesComponent implements OnInit {
   
   constructor() { }
 
-  //  declaring a 'heroes' component and initializing its value to the HEROES object
+  //  declaring a 'heroes' property and initializing its value to the HEROES object
   heroes = HEROES;
 
-  //  declaring a hero property of type 'Hero'
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+  //  declaring a selectedHero property of type 'Hero'
+  selectedHero : Hero;
+  
+  //  onSelect() method assigns the clicked hero from the template to the component's selectedHero
+  onSelect(hero: Hero): void {
+    this.selectedHero = hero;
+  }
 
   //  ngOnInit() is a lifecycle hook that is used for two main reasons:
   //  To perform complex initializations shortly after construction.

@@ -1,15 +1,29 @@
+<!-- Help Section -->
+<!-- *ngFor notes:
+---- <li> is the host element
+---- 'heroes' is the list from the 'HeroesComponent' class.
+---- 'hero' holds the current hero object for each iteration through the list. -->
+
 <h2>My Heroes</h2>
-<ul>
+<ul class="heroes">
     <!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list. -->
-    <li *ngFor="let hero of heroes">
+    <!-- The parentheses around click tell Angular to listen for the <li> element's click event. When the user clicks in the <li>, Angular executes the onSelect(hero) expression. -->
+    <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
 </ul>
 
-<div>
-    <label>name:
-    <!-- [(ngModel)] is Angular's two-way data binding syntax. -->
-    <!-- Here it binds the hero.name property to the HTML textbox so that data can flow in both directions: from the hero.name property to the textbox, and from the textbox back to the hero.name.  -->
-    <input [(ngModel)]="hero.name" placeholder="name">
-    </label>
+<!-- div only displays the selected hero's details if the 'selectedHero' exists -->
+<div *ngIf="selectedHero">
+
+    <h2>{{selectedHero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+        <label>name:
+            <!-- [(ngModel)] is Angular's two-way data binding syntax. -->
+            <!-- Here it binds the hero.name property to the HTML textbox so that data can flow in both directions: from the hero.name property to the textbox, and from the textbox back to the hero.name.  -->
+            <input [(ngModel)]="selectedHero.name" placeholder="name">
+        </label>
+    </div>
+
 </div>
