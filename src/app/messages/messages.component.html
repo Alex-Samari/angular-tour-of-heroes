@@ -1,0 +1,10 @@
+<!-- checks if a 'message' exists in the 'messages' array of 'messageService' -->
+<div *ngIf="messageService.messages.length">
+
+  <h2>Messages</h2>
+  <button class="clear"
+          (click)="messageService.clear()">clear</button>
+  <!-- for each 'message' of the 'messages' array in the 'messageService' display the 'message' -->
+  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+
+</div>
