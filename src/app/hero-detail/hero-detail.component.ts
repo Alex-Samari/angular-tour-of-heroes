@@ -7,7 +7,8 @@ import { Hero } from '../hero';
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent implements OnInit {
-  //  The hero property must be an Input property, annotated with the @Input() decorator, because the external HeroesComponent will bind to it
+  //  The hero property must be an Input property, annotated with the @Input() decorator, 
+  //  because the external HeroesComponent will bind to it. See "heros.component.html"
   @Input() hero: Hero;
   constructor() { }
 
