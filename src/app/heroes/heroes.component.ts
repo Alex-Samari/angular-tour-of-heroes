@@ -36,12 +36,16 @@ export class HeroesComponent implements OnInit {
 
   // function retrieves the heroes from the HeroService
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    //  This 'asynchronous' approach waits for the Observable to emit the array of heroes; 
+    //  then subscribe passes the emitted array to the callback, which sets the component's heroes property
+    this.heroService.getHeroes().subscribe(
+      (heroes) => {this.heroes = heroes}
+    );
   }
 
   //  ngOnInit() is a lifecycle hook that is used for two main reasons:
-  //  To perform complex initializations shortly after construction.
-  //  To set up the component after Angular sets the input properties.
+  //  To perform complex initializations shortly after construction
+  //  To set up the component after Angular sets the input properties
   ngOnInit() {
     this.getHeroes();
   }
