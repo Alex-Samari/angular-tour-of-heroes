@@ -20,33 +20,26 @@ import { HEROES } from '../mock-heroes';
 //  This component is being automatically imported by Angular to the app.module.ts
 export class HeroesComponent implements OnInit {
 
-  //  The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site
-  constructor(private heroService: HeroService) { }
-
   //  declaring a 'heroes' property which is an array of type 'Hero'
   heroes: Hero[];
 
-  //  declaring a selectedHero property of type 'Hero'
-  selectedHero: Hero;
-
-  //  onSelect() method assigns the clicked hero from the template to the component's selectedHero
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
-
-  // function retrieves the heroes from the HeroService
-  getHeroes(): void {
-    //  This 'asynchronous' approach waits for the Observable to emit the array of heroes; 
-    //  then subscribe passes the emitted array to the callback, which sets the component's heroes property
-    this.heroService.getHeroes().subscribe(
-      (heroes) => {this.heroes = heroes}
-    );
-  }
+  //  The parameter simultaneously defines a private heroService property and identifies it as a HeroService injection site
+  constructor(private heroService: HeroService) { }
 
   //  ngOnInit() is a lifecycle hook that is used for two main reasons:
   //  To perform complex initializations shortly after construction
   //  To set up the component after Angular sets the input properties
   ngOnInit() {
     this.getHeroes();
+  }
+
+  // function retrieves the heroes from the HeroService
+  getHeroes(): void {
+    //  This 'asynchronous' approach waits for the Observable to emit the array of heroes; 
+    //  then subscribe passes the emitted array to the callback, which sets the component's heroes property
+    this.heroService.getHeroes()
+    .subscribe((heroes) => {
+      this.heroes = heroes
+    });
   }
 }
